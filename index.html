@@ -1,264 +1,269 @@
-/* =========================================
-   JOSA AI — BOTTOM NAVIGATION
-   MATCHES index.html
-========================================= */
 
-.bottom-nav {
-    position: fixed;
-    z-index: 1000;
-    right: 12px;
-    bottom: 12px;
-    left: 12px;
+<!DOCTYPE html>
+<html lang="en">
 
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+<head>
+    <meta charset="UTF-8">
 
-    height: 78px;
-    padding: 8px 6px;
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,
+          maximum-scale=1.0, user-scalable=no,
+          viewport-fit=cover">
 
-    background: rgba(14, 14, 13, 0.97);
-    border: 1px solid var(--josa-border);
-    border-radius: 25px;
+    <meta name="theme-color" content="#050505">
 
-    box-shadow:
-        0 -8px 35px rgba(0, 0, 0, 0.45),
-        0 0 25px rgba(220, 174, 61, 0.04);
+    <title>JOSA | Home</title>
 
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-}
+    <!-- CSS FILES -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/navigation.css">
+</head>
 
-/* =========================================
-   NORMAL NAVIGATION LINKS
-========================================= */
+<body>
 
-.nav-link {
-    position: relative;
+    <div class="josa-app">
 
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+        <!-- HEADER -->
+        <header class="home-header">
 
-    gap: 5px;
-    height: 62px;
+            <a href="index.html" class="josa-brand">
+                <div class="josa-logo">J</div>
 
-    color: var(--josa-muted);
-    font-size: 10px;
-    font-weight: 600;
+                <div class="brand-text">
+                    <h1>JOSA</h1>
+                    <span>YOUR PERSONAL AI COMPANION</span>
+                </div>
+            </a>
 
-    text-decoration: none;
-    transition: color 220ms ease;
-}
+            <a href="pages/profile.html"
+               class="header-icon"
+               aria-label="Open profile">
+                ⚙
+            </a>
 
-.nav-link:hover,
-.nav-link.active {
-    color: var(--josa-gold-light);
-}
+        </header>
 
-.nav-link.active::after {
-    position: absolute;
-    right: 30%;
-    bottom: 0;
-    left: 30%;
 
-    height: 3px;
+        <!-- MAIN CONTENT -->
+        <main class="home-content">
 
-    background: var(--josa-gold);
-    border-radius: 10px;
-    box-shadow: 0 0 12px var(--josa-gold);
+            <!-- HERO SECTION -->
+            <section class="home-hero">
 
-    content: "";
-}
+                <div class="hero-content">
 
-/* =========================================
-   NAVIGATION ICONS
-========================================= */
+                    <div class="gold-divider"></div>
 
-.nav-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+                    <p class="hero-label">
+                        WELCOME TO YOUR SPACE
+                    </p>
 
-    width: 27px;
-    height: 27px;
+                    <h2>
+                        Hello,<br>
+                        <span>I'm JOSA.</span>
+                    </h2>
 
-    font-size: 23px;
-    line-height: 1;
-}
+                    <p class="hero-text">
+                        Your personal AI companion for a
+                        better, smarter, and more meaningful life.
+                    </p>
 
-/* =========================================
-   CENTER LIVE BUTTON
-========================================= */
+                    <div class="companion-pill">
+                        <span class="pill-symbol">✦</span>
 
-.live-button {
-    position: relative;
+                        <div>
+                            <strong>Always here for you</strong>
+                            <small>LEARN · GROW · ACHIEVE</small>
+                        </div>
+                    </div>
 
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+                </div>
 
-    gap: 3px;
-    height: 78px;
+                <div class="hero-art" aria-hidden="true">
+                    <div class="art-glow"></div>
+                    <div class="art-circle"></div>
+                    <span>J</span>
+                </div>
 
-    color: var(--josa-black);
-    text-decoration: none;
-}
+            </section>
 
-/* Gold circular button */
 
-.live-circle {
-    position: relative;
+            <!-- QUICK ACCESS -->
+            <section class="quick-access">
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+                <div class="section-title">
+                    <span>QUICK ACCESS</span>
+                    <div></div>
+                </div>
 
-    width: 59px;
-    height: 59px;
+                <div class="feature-grid">
 
-    color: var(--josa-black);
-    background: linear-gradient(
-        145deg,
-        var(--josa-gold-light),
-        var(--josa-gold)
-    );
+                    <!-- CHAT -->
+                    <a href="pages/chat.html"
+                       class="feature-card">
 
-    border: 4px solid var(--josa-black);
-    border-radius: 50%;
+                        <div class="feature-top">
+                            <span class="feature-icon">◌</span>
+                            <span class="feature-arrow">↗</span>
+                        </div>
 
-    font-size: 25px;
+                        <h3>Chat</h3>
 
-    box-shadow:
-        0 0 0 1px var(--josa-gold-dark),
-        0 0 25px rgba(220, 174, 61, 0.35);
+                        <p>
+                            Have a natural conversation
+                            with JOSA.
+                        </p>
 
-    transition:
-        transform 220ms ease,
-        box-shadow 220ms ease;
-}
+                    </a>
 
-.live-circle::before {
-    position: absolute;
-    inset: -8px;
 
-    border: 1px solid rgba(220, 174, 61, 0.35);
-    border-radius: 50%;
+                    <!-- LIVE -->
+                    <a href="pages/live.html"
+                       class="feature-card">
 
-    content: "";
-    animation: livePulse 3s ease-in-out infinite;
-}
+                        <div class="feature-top">
+                            <span class="feature-icon">◉</span>
+                            <span class="feature-arrow">↗</span>
+                        </div>
 
-.live-button small {
-    position: absolute;
-    bottom: -1px;
+                        <h3>Live Conversation</h3>
 
-    color: var(--josa-gold-light);
-    font-size: 9px;
-    font-weight: 700;
+                        <p>
+                            Talk with JOSA using your voice.
+                        </p>
 
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-}
+                    </a>
 
-.live-button:hover .live-circle {
-    transform: translateY(-3px);
 
-    box-shadow:
-        0 0 0 1px var(--josa-gold),
-        0 0 40px rgba(220, 174, 61, 0.55);
-}
+                    <!-- PROFILE -->
+                    <a href="pages/profile.html"
+                       class="feature-card">
 
-.live-button:active .live-circle {
-    transform: scale(0.93);
-}
+                        <div class="feature-top">
+                            <span class="feature-icon">♙</span>
+                            <span class="feature-arrow">↗</span>
+                        </div>
 
-/* =========================================
-   LIVE ANIMATION
-========================================= */
+                        <h3>Profile</h3>
 
-@keyframes livePulse {
-    0%,
-    100% {
-        transform: scale(0.95);
-        opacity: 0.3;
-    }
+                        <p>
+                            Manage your profile and
+                            personal preferences.
+                        </p>
 
-    50% {
-        transform: scale(1.08);
-        opacity: 1;
-    }
-}
+                    </a>
 
-/* =========================================
-   CONTENT SPACE
-========================================= */
 
-.home-content {
-    padding-bottom: 120px;
-}
+                    <!-- ABOUT -->
+                    <a href="pages/about.html"
+                       class="feature-card">
 
-/* =========================================
-   MOBILE RESPONSIVE
-========================================= */
+                        <div class="feature-top">
+                            <span class="feature-icon">✦</span>
+                            <span class="feature-arrow">↗</span>
+                        </div>
 
-@media (max-width: 380px) {
-    .bottom-nav {
-        right: 7px;
-        bottom: 7px;
-        left: 7px;
+                        <h3>About JOSA</h3>
 
-        height: 75px;
-        padding: 6px 2px;
-    }
+                        <p>
+                            Discover the vision behind
+                            your AI companion.
+                        </p>
 
-    .nav-link {
-        font-size: 9px;
-    }
+                    </a>
 
-    .nav-icon {
-        font-size: 21px;
-    }
+                </div>
 
-    .live-circle {
-        width: 54px;
-        height: 54px;
+            </section>
 
-        font-size: 22px;
-    }
-}
 
-/* =========================================
-   TABLET AND DESKTOP
-========================================= */
+            <!-- MOTIVATIONAL QUOTE -->
+            <section class="home-quote">
 
-@media (min-width: 768px) {
-    .bottom-nav {
-        right: auto;
-        bottom: 25px;
-        left: 50%;
+                <span>—</span>
 
-        width: 500px;
+                <p>
+                    Better conversations.
+                    A brighter future.
+                </p>
 
-        transform: translateX(-50%);
-    }
-}
+                <span>—</span>
 
-/* =========================================
-   ACCESSIBILITY
-========================================= */
+            </section>
 
-@media (prefers-reduced-motion: reduce) {
-    .live-circle::before {
-        animation: none;
-    }
+        </main>
 
-    .nav-link,
-    .live-circle {
-        transition: none;
-    }
-}
+
+        <!-- BOTTOM NAVIGATION -->
+        <nav class="bottom-nav"
+             aria-label="Main navigation">
+
+            <!-- HOME -->
+            <a href="index.html"
+               class="nav-link active"
+               data-page="home"
+               aria-current="page">
+
+                <span class="nav-icon">⌂</span>
+                <span>Home</span>
+
+            </a>
+
+
+            <!-- CHAT -->
+            <a href="pages/chat.html"
+               class="nav-link"
+               data-page="chat">
+
+                <span class="nav-icon">◌</span>
+                <span>Chat</span>
+
+            </a>
+
+
+            <!-- CENTER LIVE BUTTON -->
+            <a href="pages/live.html"
+               class="live-button"
+               data-page="live"
+               aria-label="Start live conversation">
+
+                <span class="live-circle">◉</span>
+                <small>Live</small>
+
+            </a>
+
+
+            <!-- PROFILE -->
+            <a href="pages/profile.html"
+               class="nav-link"
+               data-page="profile">
+
+                <span class="nav-icon">♙</span>
+                <span>Profile</span>
+
+            </a>
+
+
+            <!-- ABOUT -->
+            <a href="pages/about.html"
+               class="nav-link"
+               data-page="about">
+
+                <span class="nav-icon">ⓘ</span>
+                <span>About</span>
+
+            </a>
+
+        </nav>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="js/navigation.js"></script>
+    <script src="js/home.js"></script>
+
+</body>
+</html>
+   
