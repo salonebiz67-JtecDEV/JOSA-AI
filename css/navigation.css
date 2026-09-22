@@ -1,178 +1,212 @@
+
 /* =========================================
-   JOSA AI — GLOBAL NAVIGATION
+   JOSA AI — BOTTOM NAVIGATION
+   MATCHED TO INDEX.HTML
 ========================================= */
 
-.josa-bottom-navigation {
+.bottom-nav {
     position: fixed;
-    z-index: 50;
+    z-index: 1000;
     right: 12px;
     bottom: 12px;
     left: 12px;
+
     display: flex;
     align-items: center;
     justify-content: space-around;
-    height: var(--bottom-nav-height);
-    padding: 10px 8px;
-    background: rgba(12, 12, 12, 0.96);
+
+    height: 82px;
+    padding: 8px 6px;
+
+    background: rgba(14, 14, 13, 0.98);
     border: 1px solid var(--josa-border);
-    border-radius: 26px;
-    box-shadow: 0 -8px 35px rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(18px);
+    border-radius: 25px;
+
+    box-shadow:
+        0 -8px 35px rgba(0, 0, 0, 0.5),
+        0 0 25px rgba(220, 174, 61, 0.05);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
 /* =========================================
-   NAVIGATION ITEM
+   NORMAL NAVIGATION LINKS
 ========================================= */
 
-.nav-item {
+.nav-link {
     position: relative;
+
     display: flex;
     flex: 1;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     gap: 6px;
+    height: 65px;
     min-width: 0;
-    height: 62px;
-    padding: 5px 2px;
+
     color: var(--josa-muted);
-    font-size: 10px;
+    font-family: inherit;
+    font-size: 11px;
     font-weight: 600;
+
+    text-align: center;
     text-decoration: none;
-    letter-spacing: 0.2px;
-    border-radius: 16px;
-    transition: color var(--josa-transition);
+
+    transition:
+        color 220ms ease,
+        transform 220ms ease;
 }
 
-.nav-item:hover,
-.nav-item.active {
+.nav-link:hover,
+.nav-link.active {
     color: var(--josa-gold-light);
 }
 
-.nav-item.active::after {
+.nav-link:active {
+    transform: scale(0.94);
+}
+
+/* Active indicator */
+
+.nav-link.active::after {
     position: absolute;
-    right: 35%;
-    bottom: 2px;
-    left: 35%;
+    right: 30%;
+    bottom: 0;
+    left: 30%;
+
     height: 3px;
+
     background: var(--josa-gold);
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: 0 0 12px var(--josa-gold);
+
     content: "";
 }
 
+/* =========================================
+   NAVIGATION ICONS
+========================================= */
+
 .nav-icon {
-    display: grid;
-    width: 24px;
-    height: 24px;
-    place-items: center;
-    font-size: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 28px;
+
+    color: inherit;
+    font-size: 24px;
+    line-height: 1;
 }
 
 /* =========================================
    CENTER LIVE BUTTON
 ========================================= */
 
-.nav-live-wrapper {
+.live-button {
     position: relative;
+
     display: flex;
     flex: 1;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 75px;
+
+    gap: 3px;
+    height: 82px;
+    min-width: 0;
+
+    color: var(--josa-black);
+    text-decoration: none;
 }
 
-.nav-live-button {
+.live-circle {
     position: relative;
-    display: grid;
-    width: 65px;
-    height: 65px;
-    place-items: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 60px;
+    height: 60px;
+
     color: var(--josa-black);
+
     background: linear-gradient(
         145deg,
         var(--josa-gold-light),
         var(--josa-gold)
     );
+
     border: 4px solid var(--josa-black);
     border-radius: 50%;
+
+    font-size: 25px;
+    line-height: 1;
+
     box-shadow:
         0 0 0 1px var(--josa-gold-dark),
-        0 0 25px rgba(220, 174, 61, 0.3),
-        0 8px 25px rgba(0, 0, 0, 0.45);
-    text-decoration: none;
+        0 0 25px rgba(220, 174, 61, 0.35);
+
     transition:
         transform 220ms ease,
         box-shadow 220ms ease;
 }
 
-.nav-live-button::before {
+/* Live outer glow */
+
+.live-circle::before {
     position: absolute;
     inset: -8px;
-    border: 1px solid rgba(220, 174, 61, 0.3);
+
+    border: 1px solid rgba(220, 174, 61, 0.35);
     border-radius: 50%;
+
     content: "";
-    animation: liveButtonPulse 3s ease-in-out infinite;
+
+    animation: livePulse 3s ease-in-out infinite;
 }
 
-.nav-live-button:hover {
-    transform: translateY(-4px);
+.live-button:hover .live-circle {
+    transform: translateY(-3px);
+
     box-shadow:
         0 0 0 1px var(--josa-gold),
-        0 0 40px rgba(220, 174, 61, 0.5);
+        0 0 40px rgba(220, 174, 61, 0.55);
 }
 
-.nav-live-button:active {
-    transform: scale(0.94);
+.live-button:active .live-circle {
+    transform: scale(0.93);
 }
 
-.nav-live-icon {
-    font-size: 25px;
-    font-weight: 800;
-}
-
-.nav-live-label {
+.live-button small {
     position: absolute;
     right: 0;
-    bottom: -18px;
+    bottom: 1px;
     left: 0;
+
     color: var(--josa-gold-light);
     font-size: 9px;
     font-weight: 700;
+
     text-align: center;
     letter-spacing: 0.8px;
     text-transform: uppercase;
 }
 
 /* =========================================
-   NAVIGATION BADGE
+   LIVE ANIMATION
 ========================================= */
 
-.nav-badge {
-    position: absolute;
-    top: 7px;
-    right: 12%;
-    display: grid;
-    min-width: 15px;
-    height: 15px;
-    padding: 2px 4px;
-    place-items: center;
-    color: var(--josa-black);
-    background: var(--josa-gold);
-    border-radius: 20px;
-    font-size: 8px;
-    font-weight: 800;
-}
-
-/* =========================================
-   ANIMATION
-========================================= */
-
-@keyframes liveButtonPulse {
+@keyframes livePulse {
     0%,
     100% {
-        transform: scale(0.96);
-        opacity: 0.35;
+        transform: scale(0.95);
+        opacity: 0.3;
     }
 
     50% {
@@ -182,41 +216,61 @@
 }
 
 /* =========================================
-   MOBILE RESPONSIVE
+   HOME CONTENT CLEARANCE
+========================================= */
+
+.home-content {
+    padding-bottom: 125px;
+}
+
+/* =========================================
+   SMALL MOBILE DEVICES
 ========================================= */
 
 @media (max-width: 380px) {
-    .josa-bottom-navigation {
+    .bottom-nav {
         right: 7px;
         bottom: 7px;
         left: 7px;
-        padding: 8px 3px;
+
+        height: 78px;
+        padding: 6px 2px;
     }
 
-    .nav-item {
+    .nav-link {
+        gap: 5px;
         font-size: 9px;
     }
 
-    .nav-live-button {
-        width: 58px;
-        height: 58px;
+    .nav-icon {
+        width: 25px;
+        height: 25px;
+        font-size: 21px;
     }
 
-    .nav-live-icon {
+    .live-button {
+        height: 78px;
+    }
+
+    .live-circle {
+        width: 55px;
+        height: 55px;
         font-size: 22px;
     }
 }
 
 /* =========================================
-   DESKTOP RESPONSIVE
+   TABLET AND DESKTOP
 ========================================= */
 
 @media (min-width: 768px) {
-    .josa-bottom-navigation {
+    .bottom-nav {
         right: auto;
         bottom: 25px;
         left: 50%;
+
         width: 500px;
+
         transform: translateX(-50%);
     }
 }
@@ -226,12 +280,12 @@
 ========================================= */
 
 @media (prefers-reduced-motion: reduce) {
-    .nav-live-button::before {
+    .live-circle::before {
         animation: none;
     }
 
-    .nav-live-button,
-    .nav-item {
+    .nav-link,
+    .live-circle {
         transition: none;
     }
 }
