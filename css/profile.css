@@ -1,0 +1,386 @@
+
+/* =========================================
+   JOSA AI — PROFILE PAGE
+   PREMIUM BLACK & GOLD DESIGN
+========================================= */
+
+.profile-app {
+    min-height: 100dvh;
+    background:
+        radial-gradient(
+            circle at 50% 10%,
+            rgba(220, 174, 61, 0.07),
+            transparent 38%
+        ),
+        var(--josa-black);
+}
+
+/* =========================================
+   PROFILE HEADER
+========================================= */
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 22px 20px 16px;
+    border-bottom: 1px solid rgba(220, 174, 61, 0.12);
+}
+
+.profile-back,
+.profile-settings-button {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+
+    color: var(--josa-white);
+    background: var(--josa-card);
+    border: 1px solid var(--josa-border);
+    border-radius: 50%;
+
+    font-size: 21px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.profile-settings-button {
+    font-size: 18px;
+}
+
+.profile-back:hover,
+.profile-settings-button:hover {
+    color: var(--josa-gold-light);
+    border-color: var(--josa-gold);
+}
+
+.profile-header-title {
+    text-align: center;
+}
+
+.profile-header-title span {
+    color: var(--josa-gold);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.profile-header-title h1 {
+    margin-top: 4px;
+    color: var(--josa-white);
+    font-size: 21px;
+    font-weight: 600;
+}
+
+/* =========================================
+   PROFILE CONTENT
+========================================= */
+
+.profile-content {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 30px 20px 135px;
+}
+
+/* =========================================
+   PROFILE IDENTITY
+========================================= */
+
+.profile-identity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.profile-avatar {
+    position: relative;
+    display: grid;
+    width: 106px;
+    height: 106px;
+    margin-bottom: 18px;
+    place-items: center;
+
+    background:
+        radial-gradient(
+            circle at 30% 20%,
+            var(--josa-gold-light),
+            var(--josa-gold-dark)
+        );
+
+    border: 2px solid var(--josa-gold);
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 35px rgba(220, 174, 61, 0.16),
+        inset 0 -12px 25px rgba(0, 0, 0, 0.3);
+}
+
+.profile-avatar span {
+    color: var(--josa-black);
+    font-size: 53px;
+    font-weight: 800;
+}
+
+.avatar-status {
+    position: absolute;
+    right: 4px;
+    bottom: 7px;
+
+    width: 17px;
+    height: 17px;
+
+    background: #4caf78;
+    border: 3px solid var(--josa-black);
+    border-radius: 50%;
+}
+
+.profile-identity h2 {
+    color: var(--josa-white);
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.profile-identity p {
+    margin-top: 7px;
+    color: var(--josa-muted);
+    font-size: 12px;
+}
+
+.profile-member-badge {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    margin-top: 16px;
+    padding: 8px 13px;
+
+    color: var(--josa-gold-light);
+    background: rgba(220, 174, 61, 0.07);
+    border: 1px solid var(--josa-border);
+    border-radius: 30px;
+
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.profile-member-badge span {
+    font-size: 13px;
+}
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+.profile-section {
+    margin-top: 38px;
+}
+
+.profile-section-heading {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 14px;
+}
+
+.profile-section-heading span {
+    color: var(--josa-gold-light);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+}
+
+.profile-section-heading div {
+    flex: 1;
+    height: 1px;
+    background: var(--josa-border);
+}
+
+/* =========================================
+   PROFILE CARD
+========================================= */
+
+.profile-card {
+    padding: 5px 16px;
+    background: rgba(17, 17, 15, 0.88);
+    border: 1px solid rgba(220, 174, 61, 0.16);
+    border-radius: 20px;
+}
+
+/* =========================================
+   PERSONAL FIELDS
+========================================= */
+
+.profile-field {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 75px;
+}
+
+.field-icon,
+.option-icon {
+    display: grid;
+    flex-shrink: 0;
+    width: 39px;
+    height: 39px;
+    place-items: center;
+
+    color: var(--josa-gold-light);
+    background: rgba(220, 174, 61, 0.08);
+    border-radius: 12px;
+
+    font-size: 19px;
+}
+
+.field-content,
+.option-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.field-content small,
+.option-content small {
+    color: var(--josa-muted);
+    font-size: 9px;
+    letter-spacing: 0.8px;
+}
+
+.field-content strong,
+.option-content strong {
+    overflow: hidden;
+    color: var(--josa-white);
+    font-size: 13px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+}
+
+.field-edit {
+    padding: 8px;
+    color: var(--josa-muted);
+    background: transparent;
+    border: none;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.field-edit:hover {
+    color: var(--josa-gold-light);
+}
+
+.field-status {
+    color: #78c99a;
+    font-size: 10px;
+}
+
+.profile-divider {
+    height: 1px;
+    background: rgba(220, 174, 61, 0.11);
+}
+
+/* =========================================
+   PREFERENCE OPTIONS
+========================================= */
+
+.profile-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    min-height: 77px;
+    padding: 8px 0;
+
+    color: var(--josa-white);
+    text-align: left;
+    background: transparent;
+    border: none;
+
+    cursor: pointer;
+}
+
+.profile-option:hover .option-content strong {
+    color: var(--josa-gold-light);
+}
+
+.option-arrow {
+    color: var(--josa-muted);
+    font-size: 25px;
+}
+
+.option-icon {
+    font-size: 17px;
+}
+
+/* =========================================
+   PROFILE FOOTER
+========================================= */
+
+.profile-footer {
+    margin-top: 45px;
+    padding: 30px 20px;
+    text-align: center;
+
+    background: rgba(220, 174, 61, 0.035);
+    border: 1px solid rgba(220, 174, 61, 0.12);
+    border-radius: 20px;
+}
+
+.profile-footer-symbol {
+    margin-bottom: 12px;
+    color: var(--josa-gold);
+    font-size: 23px;
+}
+
+.profile-footer p {
+    color: var(--josa-white);
+    font-size: 13px;
+    font-style: italic;
+}
+
+.profile-footer small {
+    display: block;
+    margin-top: 12px;
+    color: var(--josa-muted);
+    font-size: 9px;
+    letter-spacing: 1.2px;
+}
+
+/* =========================================
+   DESKTOP
+========================================= */
+
+@media (min-width: 768px) {
+    .profile-header {
+        padding-right: 35px;
+        padding-left: 35px;
+    }
+
+    .profile-content {
+        padding-top: 45px;
+    }
+
+    .profile-avatar {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .profile-back,
+    .profile-settings-button,
+    .profile-option {
+        transition: none;
+    }
+}
