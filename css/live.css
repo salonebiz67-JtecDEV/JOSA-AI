@@ -1,0 +1,574 @@
+/* =========================================
+   JOSA AI — LIVE VOICE INTERFACE
+   PREMIUM BLACK & GOLD DESIGN
+========================================= */
+
+:root {
+    --live-gold-glow: rgba(220, 174, 61, 0.25);
+    --live-gold-soft: rgba(220, 174, 61, 0.08);
+}
+
+/* =========================================
+   MAIN LIVE APP
+========================================= */
+
+.josa-live-app {
+    position: relative;
+    display: flex;
+    width: 100%;
+    min-height: 100dvh;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(220, 174, 61, 0.07),
+            transparent 45%
+        ),
+        var(--josa-black);
+}
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.voice-sidebar {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: min(310px, 85%);
+    height: 100dvh;
+    padding: 26px 22px;
+    background: rgba(10, 10, 9, 0.98);
+    border-right: 1px solid var(--josa-border);
+    box-shadow: 20px 0 70px rgba(0, 0, 0, 0.6);
+    transform: translateX(-105%);
+    transition: transform 300ms ease;
+}
+
+.voice-sidebar.active {
+    transform: translateX(0);
+}
+
+.voice-sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 35px;
+}
+
+.voice-sidebar-header h2 {
+    color: var(--josa-white);
+    font-size: 19px;
+    letter-spacing: 0.5px;
+}
+
+.close-sidebar-button {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    color: var(--josa-muted);
+    font-size: 22px;
+    background: var(--josa-card);
+    border: 1px solid var(--josa-border);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.close-sidebar-button:hover {
+    color: var(--josa-gold-light);
+    border-color: var(--josa-gold);
+}
+
+/* =========================================
+   SIDEBAR SETTINGS
+========================================= */
+
+.voice-setting {
+    margin-bottom: 30px;
+}
+
+.voice-setting label {
+    display: block;
+    margin-bottom: 11px;
+    color: var(--josa-muted);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.voice-setting select {
+    width: 100%;
+    padding: 13px 14px;
+    color: var(--josa-white);
+    background: var(--josa-card);
+    border: 1px solid var(--josa-border);
+    border-radius: 12px;
+    outline: none;
+}
+
+.voice-setting select:focus {
+    border-color: var(--josa-gold);
+}
+
+.voice-setting input[type="range"] {
+    width: 100%;
+    accent-color: var(--josa-gold);
+    cursor: pointer;
+}
+
+.voice-setting small {
+    display: block;
+    margin-top: 9px;
+    color: var(--josa-muted);
+    font-size: 11px;
+}
+
+/* =========================================
+   TOGGLE BUTTON
+========================================= */
+
+.voice-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 14px;
+    color: var(--josa-white);
+    background: var(--josa-card);
+    border: 1px solid var(--josa-border);
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.voice-toggle.active {
+    color: var(--josa-gold-light);
+    border-color: var(--josa-gold);
+    background: var(--live-gold-soft);
+}
+
+.voice-sidebar-footer {
+    margin-top: auto;
+    padding-top: 20px;
+    color: var(--josa-muted);
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+/* =========================================
+   SIDEBAR OVERLAY
+========================================= */
+
+.voice-overlay {
+    position: fixed;
+    z-index: 90;
+    inset: 0;
+    display: none;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(5px);
+}
+
+.voice-overlay.active {
+    display: block;
+}
+
+/* =========================================
+   LIVE MAIN
+========================================= */
+
+.live-main {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100dvh;
+    padding: 22px 20px 30px;
+}
+
+/* =========================================
+   TOP BAR
+========================================= */
+
+.live-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.live-back-button,
+.open-sidebar-button {
+    display: grid;
+    width: 43px;
+    height: 43px;
+    place-items: center;
+    color: var(--josa-white);
+    background: rgba(17, 17, 15, 0.85);
+    border: 1px solid var(--josa-border);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all var(--josa-transition);
+}
+
+.live-back-button:hover,
+.open-sidebar-button:hover {
+    color: var(--josa-gold-light);
+    border-color: var(--josa-gold);
+    box-shadow: 0 0 18px var(--live-gold-glow);
+}
+
+.live-top-title {
+    color: var(--josa-white);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.live-top-status {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--josa-muted);
+    font-size: 10px;
+}
+
+.live-status-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--josa-gold);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--josa-gold);
+}
+
+/* =========================================
+   VOICE CONTENT
+========================================= */
+
+.live-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 35px 0 20px;
+    text-align: center;
+}
+
+.voice-status {
+    margin-bottom: 13px;
+    color: var(--josa-gold-light);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.voice-heading {
+    margin-bottom: 12px;
+    color: var(--josa-white);
+    font-size: clamp(27px, 7vw, 42px);
+    font-weight: 600;
+    letter-spacing: -1px;
+}
+
+.voice-description {
+    max-width: 290px;
+    margin-bottom: 35px;
+    color: var(--josa-muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* =========================================
+   VOICE VISUALIZER
+========================================= */
+
+.voice-visualizer {
+    position: relative;
+    display: grid;
+    width: min(270px, 75vw);
+    height: min(270px, 75vw);
+    margin: 10px auto 38px;
+    place-items: center;
+}
+
+.voice-ring {
+    position: absolute;
+    border: 1px solid rgba(220, 174, 61, 0.25);
+    border-radius: 50%;
+    animation: voicePulse 4s ease-in-out infinite;
+}
+
+.ring-one {
+    width: 100%;
+    height: 100%;
+}
+
+.ring-two {
+    width: 78%;
+    height: 78%;
+    animation-delay: 0.7s;
+}
+
+.ring-three {
+    width: 58%;
+    height: 58%;
+    animation-delay: 1.4s;
+}
+
+.voice-orb {
+    position: relative;
+    display: grid;
+    width: 42%;
+    height: 42%;
+    place-items: center;
+    background:
+        radial-gradient(
+            circle at 35% 25%,
+            var(--josa-gold-light),
+            var(--josa-gold) 35%,
+            var(--josa-gold-dark) 75%,
+            #211b0c
+        );
+    border: 2px solid rgba(245, 212, 119, 0.7);
+    border-radius: 50%;
+    box-shadow:
+        0 0 30px rgba(220, 174, 61, 0.3),
+        0 0 90px rgba(220, 174, 61, 0.1),
+        inset -12px -15px 25px rgba(0, 0, 0, 0.3);
+    animation: orbFloat 5s ease-in-out infinite;
+}
+
+.orb-inner {
+    display: grid;
+    width: 76%;
+    height: 76%;
+    place-items: center;
+    color: #17130a;
+    font-size: 42px;
+    font-weight: 800;
+    border: 1px solid rgba(20, 16, 5, 0.3);
+    border-radius: 50%;
+}
+
+/* =========================================
+   ACTIVE LISTENING ANIMATION
+========================================= */
+
+.voice-visualizer.listening .voice-ring {
+    border-color: rgba(245, 212, 119, 0.65);
+    animation-duration: 1.8s;
+}
+
+.voice-visualizer.listening .voice-orb {
+    box-shadow:
+        0 0 40px rgba(220, 174, 61, 0.55),
+        0 0 120px rgba(220, 174, 61, 0.25);
+    animation: listeningPulse 1.2s ease-in-out infinite;
+}
+
+/* =========================================
+   SPEAKING ANIMATION
+========================================= */
+
+.voice-visualizer.speaking .voice-ring {
+    border-color: rgba(245, 212, 119, 0.85);
+    animation: speakingWave 0.9s ease-in-out infinite;
+}
+
+.voice-visualizer.speaking .voice-orb {
+    animation: speakingOrb 0.7s ease-in-out infinite;
+}
+
+/* =========================================
+   MICROPHONE BUTTON
+========================================= */
+
+.microphone-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 68px;
+    height: 68px;
+    color: var(--josa-black);
+    background: linear-gradient(
+        145deg,
+        var(--josa-gold-light),
+        var(--josa-gold)
+    );
+    border: none;
+    border-radius: 50%;
+    box-shadow:
+        0 0 25px rgba(220, 174, 61, 0.18),
+        0 8px 30px rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+    transition: all var(--josa-transition);
+}
+
+.microphone-button:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 0 35px rgba(220, 174, 61, 0.35),
+        0 10px 35px rgba(0, 0, 0, 0.5);
+}
+
+.microphone-button:active {
+    transform: scale(0.94);
+}
+
+.microphone-button.active {
+    background: #b78b2d;
+    box-shadow:
+        0 0 40px rgba(220, 174, 61, 0.55);
+}
+
+.microphone-icon {
+    width: 25px;
+    height: 25px;
+}
+
+/* =========================================
+   CONTROL LABEL
+========================================= */
+
+.voice-control-label {
+    margin-top: 17px;
+    color: var(--josa-muted);
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.live-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding-top: 20px;
+    color: var(--josa-muted);
+    font-size: 10px;
+    letter-spacing: 0.5px;
+}
+
+.connection-dot {
+    width: 6px;
+    height: 6px;
+    background: #4caf78;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(76, 175, 120, 0.5);
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes voicePulse {
+    0%,
+    100% {
+        transform: scale(0.94);
+        opacity: 0.35;
+    }
+
+    50% {
+        transform: scale(1.04);
+        opacity: 1;
+    }
+}
+
+@keyframes orbFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes listeningPulse {
+    0%,
+    100% {
+        transform: scale(0.95);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+@keyframes speakingWave {
+    0%,
+    100% {
+        transform: scale(0.92);
+        opacity: 0.35;
+    }
+
+    50% {
+        transform: scale(1.09);
+        opacity: 1;
+    }
+}
+
+@keyframes speakingOrb {
+    0%,
+    100% {
+        transform: scale(0.96);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (min-width: 768px) {
+    .live-main {
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 30px 45px;
+    }
+
+    .voice-visualizer {
+        width: 320px;
+        height: 320px;
+    }
+
+    .voice-heading {
+        font-size: 42px;
+    }
+
+    .voice-description {
+        max-width: 380px;
+        font-size: 14px;
+    }
+}
+
+/* =========================================
+   REDUCED MOTION ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .voice-ring,
+    .voice-orb {
+        animation: none !important;
+    }
+
+    * {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+  }
