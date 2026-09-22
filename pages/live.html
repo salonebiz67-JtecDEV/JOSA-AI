@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width,
+        initial-scale=1.0,
+        maximum-scale=1.0,
+        user-scalable=no"
+    >
+
+    <meta name="theme-color" content="#050505">
+
+    <title>Live Voice | JOSA AI</title>
+
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/live.css">
+</head>
+
+<body>
+
+    <div class="josa-live-app">
+
+        <!-- VOICE SETTINGS SIDEBAR -->
+
+        <aside class="voice-sidebar" id="voiceSidebar">
+
+            <div class="voice-sidebar-header">
+
+                <div class="sidebar-heading">
+                    <span>◉</span>
+                    <strong>Voice settings</strong>
+                </div>
+
+                <button
+                    class="voice-sidebar-close"
+                    id="closeVoiceSidebar"
+                    aria-label="Close voice settings"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <div class="voice-setting-group">
+
+                <label for="voiceSelect">
+                    Voice
+                </label>
+
+                <select id="voiceSelect">
+                    <option value="default">JOSA Natural</option>
+                    <option value="calm">Calm Voice</option>
+                    <option value="bright">Bright Voice</option>
+                </select>
+
+            </div>
+
+            <div class="voice-setting-group">
+
+                <label for="voiceSpeed">
+                    Speaking speed
+                </label>
+
+                <input
+                    type="range"
+                    id="voiceSpeed"
+                    min="0.5"
+                    max="2"
+                    step="0.1"
+                    value="1"
+                >
+
+                <div class="range-labels">
+                    <span>Slow</span>
+                    <span>Normal</span>
+                    <span>Fast</span>
+                </div>
+
+            </div>
+
+            <div class="voice-setting-group">
+
+                <label for="autoListen">
+                    Auto listening
+                </label>
+
+                <button
+                    class="setting-toggle active"
+                    id="autoListen"
+                    aria-pressed="true"
+                >
+                    <span></span>
+                    Enabled
+                </button>
+
+            </div>
+
+            <div class="voice-sidebar-footer">
+
+                <p>
+                    JOSA Live Voice
+                </p>
+
+                <span>
+                    Natural conversations, hands-free.
+                </span>
+
+            </div>
+
+        </aside>
+
+        <!-- SIDEBAR OVERLAY -->
+
+        <div
+            class="voice-overlay"
+            id="voiceOverlay"
+        ></div>
+
+        <!-- MAIN VOICE INTERFACE -->
+
+        <main class="live-main">
+
+            <!-- TOP BAR -->
+
+            <header class="live-topbar">
+
+                <a
+                    href="../index.html"
+                    class="live-back-button"
+                    aria-label="Back to home"
+                >
+                    ←
+                </a>
+
+                <div class="live-title">
+
+                    <strong>JOSA Live</strong>
+
+                    <span>Voice conversation</span>
+
+                </div>
+
+                <button
+                    class="voice-settings-button"
+                    id="openVoiceSidebar"
+                    aria-label="Open voice settings"
+                >
+                    ⚙
+                </button>
+
+            </header>
+
+            <!-- VOICE CONTENT -->
+
+            <section class="voice-stage">
+
+                <div class="voice-status" id="voiceStatus">
+                    Ready to talk
+                </div>
+
+                <div class="voice-visualizer" id="voiceVisualizer">
+
+                    <div class="voice-ring ring-one"></div>
+                    <div class="voice-ring ring-two"></div>
+                    <div class="voice-ring ring-three"></div>
+
+                    <div class="voice-orb">
+
+                        <div class="orb-inner">
+                            J
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <h1 id="voiceHeading">
+                    Talk to JOSA
+                </h1>
+
+                <p id="voiceDescription">
+                    Tap the microphone and start speaking.
+                </p>
+
+                <!-- MICROPHONE CONTROL -->
+
+                <button
+                    class="microphone-button"
+                    id="microphoneButton"
+                    aria-label="Start voice conversation"
+                >
+
+                    <span class="microphone-icon">
+                        ◉
+                    </span>
+
+                </button>
+
+                <div class="voice-control-label" id="voiceControlLabel">
+                    Tap to speak
+                </div>
+
+            </section>
+
+            <!-- BOTTOM STATUS -->
+
+            <footer class="live-footer">
+
+                <span class="connection-dot"></span>
+
+                <span id="connectionStatus">
+                    Voice system ready
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <script src="../js/live.js"></script>
+
+</body>
+</html>
