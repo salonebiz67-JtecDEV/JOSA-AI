@@ -1,0 +1,298 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width,
+          initial-scale=1.0,
+          maximum-scale=1.0,
+          user-scalable=no,
+          viewport-fit=cover">
+
+    <meta name="theme-color" content="#050505">
+
+    <title>JOSA | Profile</title>
+
+    <!-- SHARED CSS -->
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+</head>
+
+<body>
+
+    <div class="josa-app profile-app">
+
+        <!-- PROFILE HEADER -->
+        <header class="profile-header">
+
+            <a href="../index.html"
+               class="profile-back"
+               aria-label="Back to home">
+                ←
+            </a>
+
+            <div class="profile-header-title">
+                <span>JOSA AI</span>
+                <h1>Profile</h1>
+            </div>
+
+            <button class="profile-settings-button"
+                    id="profileSettingsButton"
+                    aria-label="Profile settings">
+                ⚙
+            </button>
+
+        </header>
+
+
+        <!-- PROFILE CONTENT -->
+        <main class="profile-content">
+
+            <!-- PROFILE IDENTITY -->
+            <section class="profile-identity">
+
+                <div class="profile-avatar">
+                    <span>J</span>
+                    <div class="avatar-status"></div>
+                </div>
+
+                <h2 id="profileName">
+                    John
+                </h2>
+
+                <p id="profileSubtitle">
+                    Your JOSA AI companion space
+                </p>
+
+                <div class="profile-member-badge">
+                    <span>✦</span>
+                    JOSA MEMBER
+                </div>
+
+            </section>
+
+
+            <!-- PERSONAL INFORMATION -->
+            <section class="profile-section">
+
+                <div class="profile-section-heading">
+                    <span>PERSONAL INFORMATION</span>
+                    <div></div>
+                </div>
+
+                <div class="profile-card">
+
+                    <div class="profile-field">
+                        <div class="field-icon">♙</div>
+
+                        <div class="field-content">
+                            <small>DISPLAY NAME</small>
+                            <strong id="displayName">
+                                John
+                            </strong>
+                        </div>
+
+                        <button class="field-edit"
+                                data-field="name"
+                                aria-label="Edit display name">
+                            ✎
+                        </button>
+                    </div>
+
+
+                    <div class="profile-divider"></div>
+
+
+                    <div class="profile-field">
+                        <div class="field-icon">✉</div>
+
+                        <div class="field-content">
+                            <small>EMAIL</small>
+                            <strong id="displayEmail">
+                                Not added
+                            </strong>
+                        </div>
+
+                        <button class="field-edit"
+                                data-field="email"
+                                aria-label="Edit email">
+                            ✎
+                        </button>
+                    </div>
+
+
+                    <div class="profile-divider"></div>
+
+
+                    <div class="profile-field">
+                        <div class="field-icon">◈</div>
+
+                        <div class="field-content">
+                            <small>AI COMPANION</small>
+                            <strong>JOSA AI</strong>
+                        </div>
+
+                        <span class="field-status">
+                            Active
+                        </span>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- PREFERENCES -->
+            <section class="profile-section">
+
+                <div class="profile-section-heading">
+                    <span>PREFERENCES</span>
+                    <div></div>
+                </div>
+
+                <div class="profile-card">
+
+                    <button class="profile-option"
+                            id="voicePreference">
+
+                        <span class="option-icon">◉</span>
+
+                        <span class="option-content">
+                            <strong>Voice Settings</strong>
+                            <small>Manage your voice experience</small>
+                        </span>
+
+                        <span class="option-arrow">›</span>
+
+                    </button>
+
+
+                    <div class="profile-divider"></div>
+
+
+                    <button class="profile-option"
+                            id="privacyPreference">
+
+                        <span class="option-icon">◇</span>
+
+                        <span class="option-content">
+                            <strong>Privacy</strong>
+                            <small>Manage your personal preferences</small>
+                        </span>
+
+                        <span class="option-arrow">›</span>
+
+                    </button>
+
+
+                    <div class="profile-divider"></div>
+
+
+                    <button class="profile-option"
+                            id="appearancePreference">
+
+                        <span class="option-icon">✦</span>
+
+                        <span class="option-content">
+                            <strong>Appearance</strong>
+                            <small>JOSA premium dark theme</small>
+                        </span>
+
+                        <span class="option-arrow">›</span>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- PROFILE FOOTER -->
+            <section class="profile-footer">
+
+                <div class="profile-footer-symbol">✦</div>
+
+                <p>
+                    Your space. Your conversations.
+                </p>
+
+                <small>
+                    JOSA AI · PERSONAL COMPANION
+                </small>
+
+            </section>
+
+        </main>
+
+
+        <!-- BOTTOM NAVIGATION -->
+        <nav class="bottom-nav"
+             aria-label="Main navigation">
+
+            <a href="../index.html"
+               class="nav-link"
+               data-page="home">
+
+                <span class="nav-icon">⌂</span>
+                <span>Home</span>
+
+            </a>
+
+
+            <a href="chat.html"
+               class="nav-link"
+               data-page="chat">
+
+                <span class="nav-icon">◌</span>
+                <span>Chat</span>
+
+            </a>
+
+
+            <a href="live.html"
+               class="live-button"
+               data-page="live"
+               aria-label="Start live conversation">
+
+                <span class="live-circle">◉</span>
+                <small>Live</small>
+
+            </a>
+
+
+            <a href="profile.html"
+               class="nav-link active"
+               data-page="profile"
+               aria-current="page">
+
+                <span class="nav-icon">♙</span>
+                <span>Profile</span>
+
+            </a>
+
+
+            <a href="about.html"
+               class="nav-link"
+               data-page="about">
+
+                <span class="nav-icon">ⓘ</span>
+                <span>About</span>
+
+            </a>
+
+        </nav>
+
+    </div>
+
+
+    <!-- PROFILE JAVASCRIPT -->
+    <script src="../js/profile.js"></script>
+    <script src="../js/navigation.js"></script>
+
+</body>
+</html>
+  
