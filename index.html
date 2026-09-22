@@ -1,72 +1,306 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>JOSA AI</title>
+    <!-- Mobile Full Screen -->
+    <meta
+        name="viewport"
+        content="width=device-width,
+        initial-scale=1.0,
+        maximum-scale=1.0,
+        user-scalable=no,
+        viewport-fit=cover"
+    >
+
+    <meta name="theme-color" content="#050505">
+
+    <title>JOSA — Personal AI Companion</title>
 
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-    <header class="topbar">
-        <div class="brand">
-            <div class="brand-icon">J</div>
-            <div>
-                <h1>JOSA</h1>
-                <span>Personal AI Companion</span>
+    <!-- APPLICATION SHELL -->
+    <div class="app-shell">
+
+        <!-- TOP HEADER -->
+        <header class="app-header">
+
+            <div class="brand-section">
+
+                <div class="brand-symbol">
+                    J
+                </div>
+
+                <div class="brand-details">
+                    <h1>JOSA</h1>
+                    <span>YOUR PERSONAL AI COMPANION</span>
+                </div>
+
             </div>
-        </div>
 
-        <div class="status">
-            <span class="status-dot"></span>
-            Online
-        </div>
-    </header>
+            <button
+                class="header-action"
+                id="settingsButton"
+                aria-label="Open settings"
+            >
+                <svg viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 1.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5v.2h-2.6v-.2a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1-1.8-1.8.1-.1A1.7 1.7 0 0 0 8 15a1.7 1.7 0 0 0-1.5-1H6.3v-2.6h.2A1.7 1.7 0 0 0 8 10a1.7 1.7 0 0 0-.3-1.9l-.1-.1 1.8-1.8.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.5v-.2h2.6v.2a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.8 1.8-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.5 1h.2V14h-.2a1.7 1.7 0 0 0-1.5 1z">
+                    </path>
+                </svg>
+            </button>
 
-    <main class="chat-container">
+        </header>
 
-        <section class="welcome">
-            <div class="josa-avatar">J</div>
 
-            <h2>Hello, I'm JOSA ❤️</h2>
+        <!-- MAIN CONTENT -->
+        <main class="main-content" id="mainContent">
 
-            <p>
-                Your personal companion for learning,
-                ideas, tasks, and everyday conversations.
-            </p>
-        </section>
+            <!-- HOME SCREEN -->
+            <section
+                class="screen active-screen"
+                id="homeScreen"
+            >
 
-        <section id="chatMessages" class="messages"></section>
+                <div class="hero-section">
 
-        <div id="thinkingIndicator" class="thinking hidden">
-            <span></span>
-            <span></span>
-            <span></span>
-            <b>JOSA is thinking...</b>
-        </div>
+                    <div class="hero-copy">
 
-    </main>
+                        <div class="gold-line"></div>
 
-    <form id="chatForm" class="input-area">
+                        <p class="eyebrow">WELCOME BACK</p>
 
-        <textarea
-            id="messageInput"
-            placeholder="Message JOSA..."
-            rows="1"
-            maxlength="10000"
-            required
-        ></textarea>
+                        <h2>
+                            Hello,
+                            <br>
+                            <span>I'm JOSA.</span>
+                        </h2>
 
-        <button id="sendButton" type="submit">
-            ➤
-        </button>
+                        <p class="hero-description">
+                            Your personal AI companion
+                            for a better, smarter,
+                            and more meaningful life.
+                        </p>
 
-    </form>
+                        <div class="companion-badge">
 
-    <script src="js/chat.js"></script>
+                            <span class="badge-icon">✦</span>
+
+                            <div>
+                                <strong>Always here for you</strong>
+                                <small>LEARN · GROW · ACHIEVE</small>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Visual space for future JOSA artwork -->
+                    <div class="hero-visual" aria-hidden="true">
+                        <div class="hero-glow"></div>
+                        <div class="hero-ring"></div>
+                        <div class="hero-initial">J</div>
+                    </div>
+
+                </div>
+
+
+                <!-- QUICK ACCESS -->
+                <div class="section-heading">
+
+                    <span>QUICK ACCESS</span>
+                    <div></div>
+
+                </div>
+
+                <div class="quick-grid">
+
+                    <button class="feature-card" data-screen="chat">
+
+                        <span class="feature-icon">◌</span>
+                        <h3>Chat</h3>
+                        <p>Talk naturally with JOSA.</p>
+                        <span class="feature-arrow">↗</span>
+
+                    </button>
+
+
+                    <button class="feature-card" data-screen="live">
+
+                        <span class="feature-icon">◉</span>
+                        <h3>Live Conversation</h3>
+                        <p>Experience real-time voice conversations.</p>
+                        <span class="feature-arrow">↗</span>
+
+                    </button>
+
+
+                    <button class="feature-card" data-screen="profile">
+
+                        <span class="feature-icon">♙</span>
+                        <h3>Profile</h3>
+                        <p>Manage your personal information.</p>
+                        <span class="feature-arrow">↗</span>
+
+                    </button>
+
+
+                    <button class="feature-card" data-screen="about">
+
+                        <span class="feature-icon">✦</span>
+                        <h3>About JOSA</h3>
+                        <p>Discover the vision behind JOSA.</p>
+                        <span class="feature-arrow">↗</span>
+
+                    </button>
+
+                </div>
+
+
+                <div class="quote-section">
+                    <span>✦</span>
+                    <p>Better conversations. A brighter future.</p>
+                    <span>✦</span>
+                </div>
+
+            </section>
+
+
+            <!-- CHAT SCREEN -->
+            <section class="screen" id="chatScreen">
+
+                <div class="screen-heading">
+                    <p class="eyebrow">YOUR COMPANION</p>
+                    <h2>Chat with JOSA</h2>
+                    <p>Have a meaningful conversation.</p>
+                </div>
+
+                <div class="screen-placeholder">
+                    Chat interface coming next.
+                </div>
+
+            </section>
+
+
+            <!-- LIVE SCREEN -->
+            <section class="screen" id="liveScreen">
+
+                <div class="screen-heading">
+                    <p class="eyebrow">REAL-TIME EXPERIENCE</p>
+                    <h2>Live Conversation</h2>
+                    <p>Talk with JOSA using your voice.</p>
+                </div>
+
+                <div class="live-placeholder">
+                    <div class="live-orb">J</div>
+                    <span>Ready when you are.</span>
+                </div>
+
+            </section>
+
+
+            <!-- PROFILE SCREEN -->
+            <section class="screen" id="profileScreen">
+
+                <div class="screen-heading">
+                    <p class="eyebrow">YOUR SPACE</p>
+                    <h2>Profile</h2>
+                    <p>Manage your personal preferences.</p>
+                </div>
+
+                <div class="screen-placeholder">
+                    Profile interface coming next.
+                </div>
+
+            </section>
+
+
+            <!-- ABOUT SCREEN -->
+            <section class="screen" id="aboutScreen">
+
+                <div class="screen-heading">
+                    <p class="eyebrow">OUR VISION</p>
+                    <h2>About JOSA</h2>
+                    <p>A companion built around your journey.</p>
+                </div>
+
+                <div class="screen-placeholder">
+                    About interface coming next.
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- FIXED BOTTOM NAVIGATION -->
+        <nav class="bottom-navigation" aria-label="Main navigation">
+
+            <button
+                class="nav-item active"
+                data-screen="home"
+            >
+                <span class="nav-icon">⌂</span>
+                <span>Home</span>
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-screen="chat"
+            >
+                <span class="nav-icon">◌</span>
+                <span>Chat</span>
+            </button>
+
+
+            <!-- CENTER LIVE BUTTON -->
+            <button
+                class="live-nav-button"
+                data-screen="live"
+                aria-label="Start live conversation"
+            >
+
+                <span class="live-button-inner">
+                    ◉
+                </span>
+
+                <small>Live</small>
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-screen="profile"
+            >
+                <span class="nav-icon">♙</span>
+                <span>Profile</span>
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-screen="about"
+            >
+                <span class="nav-icon">ⓘ</span>
+                <span>About</span>
+            </button>
+
+        </nav>
+
+    </div>
+
+
+    <script src="js/app.js"></script>
 
 </body>
 </html>
+    
