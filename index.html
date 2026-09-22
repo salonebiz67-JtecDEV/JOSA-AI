@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JOSA AI</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="topbar">
+        <div class="brand">
+            <div class="brand-icon">J</div>
+            <div>
+                <h1>JOSA</h1>
+                <span>Personal AI Companion</span>
+            </div>
+        </div>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            Online
+        </div>
+    </header>
+
+    <main class="chat-container">
+
+        <section class="welcome">
+            <div class="josa-avatar">J</div>
+
+            <h2>Hello, I'm JOSA ❤️</h2>
+
+            <p>
+                Your personal companion for learning,
+                ideas, tasks, and everyday conversations.
+            </p>
+        </section>
+
+        <section id="chatMessages" class="messages"></section>
+
+        <div id="thinkingIndicator" class="thinking hidden">
+            <span></span>
+            <span></span>
+            <span></span>
+            <b>JOSA is thinking...</b>
+        </div>
+
+    </main>
+
+    <form id="chatForm" class="input-area">
+
+        <textarea
+            id="messageInput"
+            placeholder="Message JOSA..."
+            rows="1"
+            maxlength="10000"
+            required
+        ></textarea>
+
+        <button id="sendButton" type="submit">
+            ➤
+        </button>
+
+    </form>
+
+    <script src="js/chat.js"></script>
+
+</body>
+</html>
