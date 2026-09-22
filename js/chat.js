@@ -1,121 +1,170 @@
+/* =========================================
+   JOSA AI — CHAT CONTROLLER
+========================================= */
 
 "use strict";
 
-const API_URL = "http://127.0.0.1:8000";
+/* =========================================
+   ELEMENTS
+========================================= */
 
-const chatForm = document.getElementById("chatForm");
+const chatSidebar = document.getElementById("chatSidebar");
+const openSidebar = document.getElementById("openSidebar");
+const closeSidebar = document.getElementById("closeSidebar");
+const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+const newChatButton = document.getElementById("newChatButton");
 const messageInput = document.getElementById("messageInput");
 const sendButton = document.getElementById("sendButton");
-const chatMessages = document.getElementById("chatMessages");
-const thinkingIndicator = document.getElementById("thinkingIndicator");
+const messagesContainer = document.getElementById("messagesContainer");
 
+/* =========================================
+   SIDEBAR CONTROLS
+========================================= */
 
-function addMessage(text, type) {
+function showSidebar() {
+    chatSidebar.classList.add("open");
+    sidebarOverlay.classList.add("visible");
+}
+
+function hideSidebar() {
+    chatSidebar.classList.remove("open");
+    sidebarOverlay.classList.remove("visible");
+}
+
+openSidebar?.addEventListener("click", showSidebar);
+closeSidebar?.addEventListener("click", hideSidebar);
+sidebarOverlay?.addEventListener("click", hideSidebar);
+
+/* =========================================
+   MESSAGE HELPERS
+========================================= */
+
+function createMessage(text, type) {
     const message = document.createElement("div");
 
-    message.className = `message ${type}-message`;
-    message.textContent = text;
+    message.className = `chat-message ${type}`;
 
-    chatMessages.appendChild(message);
+    const avatar = document.createElement("div");
+    avatar.className = "message-avatar";
+    avatar.textContent = type === "user" ? "U" : "J";
 
-    window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: "smooth"
-    });
+    const content = document.createElement("div");
+    content.className = "message-content";
+
+    // textContent prevents HTML injection.
+    content.textContent = text;
+
+    if (type === "user") {
+        message.appendChild(content);
+    } else {
+        message.appendChild(avatar);
+        message.appendChild(content);
+    }
 
     return message;
 }
 
+function addMessage(text, type) {
+    const welcomeMessage =
+        messagesContainer.querySelector(".welcome-message");
 
-function setThinking(visible) {
-    thinkingIndicator.classList.toggle("hidden", !visible);
-}
+    if (welcomeMessage) {
+        welcomeMessage.remove();
+    }
 
+    const message = createMessage(text, type);
 
-async function sendMessage(message) {
-    const response = await fetch(`${API_URL}/api/chat`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ message })
+    messagesContainer.appendChild(message);
+
+    messagesContainer.scrollTo({
+        top: messagesContainer.scrollHeight,
+        behavior: "smooth"
     });
-
-    if (!response.ok || !response.body) {
-        throw new Error("Unable to connect to JOSA.");
-    }
-
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder();
-
-    let aiMessage = null;
-    let buffer = "";
-
-    while (true) {
-        const { value, done } = await reader.read();
-
-        if (done) break;
-
-        buffer += decoder.decode(value, {
-            stream: true
-        });
-
-        if (!aiMessage) {
-            aiMessage = addMessage("", "ai");
-        }
-
-        // Handle the initial status message.
-        if (buffer.includes("[STATUS] thinking\n")) {
-            buffer = buffer.replace(
-                "[STATUS] thinking\n",
-                ""
-            );
-        }
-
-        aiMessage.textContent += buffer;
-        buffer = "";
-    }
-
-    if (buffer && aiMessage) {
-        aiMessage.textContent += buffer;
-    }
 }
 
+/* =========================================
+   SEND MESSAGE
+========================================= */
 
-chatForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
+function sendMessage() {
     const message = messageInput.value.trim();
 
-    if (!message || sendButton.disabled) return;
+    if (!message) {
+        return;
+    }
 
     addMessage(message, "user");
 
     messageInput.value = "";
-    sendButton.disabled = true;
+    messageInput.style.height = "auto";
 
-    setThinking(true);
+    /*
+       Temporary demo response.
+       Connect your AI backend here later.
+    */
 
-    try {
-        await sendMessage(message);
-    } catch (error) {
+    setTimeout(() => {
         addMessage(
-            "Sorry, I couldn't connect to JOSA.",
+            "I'm ready to help you. AI connection will be added later.",
             "ai"
         );
-        console.error(error);
-    } finally {
-        setThinking(false);
-        sendButton.disabled = false;
-        messageInput.focus();
-    }
-});
+    }, 600);
+}
 
+sendButton?.addEventListener("click", sendMessage);
 
-messageInput.addEventListener("keydown", (event) => {
+/* =========================================
+   ENTER TO SEND
+========================================= */
+
+messageInput?.addEventListener("keydown", (event) => {
     if (event.key === "Enter" && !event.shiftKey) {
         event.preventDefault();
-        chatForm.requestSubmit();
+        sendMessage();
     }
 });
-      
+
+/* =========================================
+   AUTO-RESIZE TEXTAREA
+========================================= */
+
+messageInput?.addEventListener("input", () => {
+    messageInput.style.height = "auto";
+    messageInput.style.height =
+        `${Math.min(messageInput.scrollHeight, 150)}px`;
+});
+
+/* =========================================
+   NEW CHAT
+========================================= */
+
+newChatButton?.addEventListener("click", () => {
+    messagesContainer.innerHTML = `
+        <div class="welcome-message">
+            <div class="welcome-logo">J</div>
+
+            <h1>How can I help you?</h1>
+
+            <p>
+                Ask JOSA anything. Your intelligent
+                companion is ready.
+            </p>
+        </div>
+    `;
+
+    messageInput.value = "";
+    messageInput.style.height = "auto";
+
+    hideSidebar();
+});
+
+/* =========================================
+   ESCAPE KEY
+========================================= */
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        hideSidebar();
+    }
+});
