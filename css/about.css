@@ -1,0 +1,31 @@
+/* =========================================
+   JOSA AI — ABOUT PAGE
+========================================= */
+
+.about-hero {
+    margin-bottom: 34px;
+}
+
+.about-hero .gold-divider {
+    margin-bottom: 16px;
+}
+
+.about-hero .eyebrow {
+    margin-bottom: 14px;
+}
+
+.about-hero h2 {
+    color: var(--josa-white);
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 14px;
+    letter-spacing: -0.5px;
+}
+
+.about-hero .hero-text {
+    color: var(--josa-muted);
+    font-size: 14px;
+    line-height: 1.8;
+    max-width: 480px;
+}
