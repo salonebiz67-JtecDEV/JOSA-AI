@@ -113,15 +113,9 @@
                         <div class="field-content">
                             <small>EMAIL</small>
                             <strong id="displayEmail">
-                                Not added
+                                Not signed in
                             </strong>
                         </div>
-
-                        <button class="field-edit"
-                                data-field="email"
-                                aria-label="Edit email">
-                            ✎
-                        </button>
                     </div>
 
 
@@ -156,57 +150,76 @@
 
                 <div class="profile-card">
 
-                    <button class="profile-option"
-                            id="voicePreference">
-
-                        <span class="option-icon">◉</span>
-
-                        <span class="option-content">
-                            <strong>Voice Settings</strong>
-                            <small>Manage your voice experience</small>
-                        </span>
-
-                        <span class="option-arrow">›</span>
-
-                    </button>
-
+                    <div class="profile-field setting-row">
+                        <div class="field-icon">◉</div>
+                        <div class="field-content">
+                            <small>SPEAK REMINDERS ALOUD</small>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="voiceToggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
 
                     <div class="profile-divider"></div>
 
-
-                    <button class="profile-option"
-                            id="privacyPreference">
-
-                        <span class="option-icon">◇</span>
-
-                        <span class="option-content">
-                            <strong>Privacy</strong>
-                            <small>Manage your personal preferences</small>
-                        </span>
-
-                        <span class="option-arrow">›</span>
-
-                    </button>
-
+                    <div class="profile-field setting-row">
+                        <div class="field-icon">◈</div>
+                        <div class="field-content">
+                            <small>REMEMBER THINGS ABOUT ME</small>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="memoryToggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
 
                     <div class="profile-divider"></div>
 
+                    <div class="profile-field setting-row">
+                        <div class="field-icon">✦</div>
+                        <div class="field-content">
+                            <small>JOSA'S TONE</small>
+                        </div>
+                        <select class="setting-select" id="toneSelect">
+                            <option value="casual">Casual</option>
+                            <option value="formal">Formal</option>
+                            <option value="direct">Direct</option>
+                        </select>
+                    </div>
 
-                    <button class="profile-option"
-                            id="appearancePreference">
+                    <div class="profile-divider"></div>
 
-                        <span class="option-icon">✦</span>
+                    <div class="profile-field setting-row">
+                        <div class="field-icon">◇</div>
+                        <div class="field-content">
+                            <small>REMINDER STYLE</small>
+                        </div>
+                        <select class="setting-select" id="notifSelect">
+                            <option value="both">Notif + voice</option>
+                            <option value="notification">Notif only</option>
+                            <option value="voice">Voice only</option>
+                        </select>
+                    </div>
 
-                        <span class="option-content">
-                            <strong>Appearance</strong>
-                            <small>JOSA premium dark theme</small>
-                        </span>
+                    <div class="profile-divider"></div>
 
-                        <span class="option-arrow">›</span>
-
-                    </button>
+                    <div class="profile-field setting-row">
+                        <div class="field-icon">⌂</div>
+                        <div class="field-content">
+                            <small>TIMEZONE</small>
+                        </div>
+                        <input type="text" class="setting-text" id="tzInput" placeholder="e.g. America/Chicago">
+                    </div>
 
                 </div>
+
+                <div class="settings-save-row">
+                    <button class="gold-button" id="saveSettingsButton">Save changes</button>
+                    <div class="save-status-text" id="saveStatusText"></div>
+                </div>
+
+                <button class="outline-button sign-out-button" id="signOutButton">Sign out</button>
 
             </section>
 
@@ -290,6 +303,9 @@
 
 
     <!-- PROFILE JAVASCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
     <script src="../js/profile.js"></script>
     <script src="../js/navigation.js"></script>
 
