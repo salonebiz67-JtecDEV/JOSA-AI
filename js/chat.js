@@ -4,6 +4,12 @@
 
 "use strict";
 
+requireAuth();
+
+if (Notification.permission === "default") {
+    Notification.requestPermission();
+}
+
 /* =========================================
    ELEMENTS
 ========================================= */
@@ -84,10 +90,16 @@ function addMessage(text, type) {
 }
 
 /* =========================================
+   CONVERSATION STATE
+========================================= */
+
+let conversationId = null;
+
+/* =========================================
    SEND MESSAGE
 ========================================= */
 
-function sendMessage() {
+async function sendMessage() {
     const message = messageInput.value.trim();
 
     if (!message) {
@@ -99,17 +111,66 @@ function sendMessage() {
     messageInput.value = "";
     messageInput.style.height = "auto";
 
-    /*
-       Temporary demo response.
-       Connect your AI backend here later.
-    */
+    sendButton.disabled = true;
 
-    setTimeout(() => {
+    try {
+        const data = await callBackend("/chat", {
+            method: "POST",
+            body: JSON.stringify({
+                message: message,
+                conversation_id: conversationId,
+            }),
+        });
+
+        conversationId = data.conversation_id;
+        addMessage(data.message, "ai");
+
+        if (data.action) {
+            handleAction(data.action);
+        }
+    } catch (error) {
         addMessage(
-            "I'm ready to help you. AI connection will be added later.",
+            "Sorry, I couldn't reach Sana just now. Please try again.",
             "ai"
         );
-    }, 600);
+        console.error(error);
+    } finally {
+        sendButton.disabled = false;
+    }
+}
+
+/* =========================================
+   ACTIONS (e.g. timers)
+   A browser can't set real system alarms like
+   the Android app can, so this simulates it
+   with an in-tab timeout + notification +
+   spoken alert. Only fires while this tab
+   stays open.
+========================================= */
+
+function handleAction(action) {
+    if (action.type !== "create_timer") {
+        return;
+    }
+
+    const seconds = action.parameters?.duration_seconds;
+    const label = action.parameters?.label || "Timer";
+
+    if (!seconds) {
+        return;
+    }
+
+    setTimeout(() => {
+        if (Notification.permission === "granted") {
+            new Notification(`${label} — time's up!`);
+        }
+
+        const utterance = new SpeechSynthesisUtterance(
+            `${label}. Time's up.`
+        );
+
+        window.speechSynthesis.speak(utterance);
+    }, seconds * 1000);
 }
 
 sendButton?.addEventListener("click", sendMessage);
@@ -140,6 +201,8 @@ messageInput?.addEventListener("input", () => {
 ========================================= */
 
 newChatButton?.addEventListener("click", () => {
+    conversationId = null;
+
     messagesContainer.innerHTML = `
         <div class="welcome-message">
             <div class="welcome-logo">J</div>

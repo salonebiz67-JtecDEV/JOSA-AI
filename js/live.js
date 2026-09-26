@@ -4,6 +4,14 @@
 
 "use strict";
 
+requireAuth();
+
+if (Notification.permission === "default") {
+    Notification.requestPermission();
+}
+
+let conversationId = null;
+
 
 /* =========================================
    ELEMENTS
@@ -271,24 +279,71 @@ microphoneButton?.addEventListener("click", () => {
    VOICE RESPONSE
 ========================================= */
 
-function handleVoiceInput(message) {
+async function handleVoiceInput(message) {
     if (!message) {
         return;
     }
 
-    console.log("Processing voice message:", message);
+    updateVoiceUI(
+        "Thinking",
+        "Let me think...",
+        "Sana is preparing a response.",
+        "One moment..."
+    );
 
-    /*
-       DEMO RESPONSE
+    try {
+        const data = await callBackend("/chat", {
+            method: "POST",
+            body: JSON.stringify({
+                message: message,
+                conversation_id: conversationId,
+            }),
+        });
 
-       Replace this section later with
-       your real JOSA AI backend/API.
-    */
+        conversationId = data.conversation_id;
+        speakResponse(data.message);
 
-    const response =
-        `I heard you say: ${message}`;
+        if (data.action) {
+            handleAction(data.action);
+        }
+    } catch (error) {
+        console.error(error);
+        speakResponse("Sorry, I couldn't reach Sana just now.");
+    }
+}
 
-    speakResponse(response);
+/* =========================================
+   ACTIONS (e.g. timers)
+   A browser can't set real system alarms like
+   the Android app can, so this simulates it
+   with an in-tab timeout + notification +
+   spoken alert. Only fires while this tab
+   stays open.
+========================================= */
+
+function handleAction(action) {
+    if (action.type !== "create_timer") {
+        return;
+    }
+
+    const seconds = action.parameters?.duration_seconds;
+    const label = action.parameters?.label || "Timer";
+
+    if (!seconds) {
+        return;
+    }
+
+    setTimeout(() => {
+        if (Notification.permission === "granted") {
+            new Notification(`${label} — time's up!`);
+        }
+
+        const utterance = new SpeechSynthesisUtterance(
+            `${label}. Time's up.`
+        );
+
+        window.speechSynthesis.speak(utterance);
+    }, seconds * 1000);
 }
 
 

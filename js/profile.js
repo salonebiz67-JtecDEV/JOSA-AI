@@ -1,10 +1,14 @@
-
 /* =========================================
    JOSA AI — PROFILE CONTROLLER
+   Now connected to the real backend settings
+   endpoint (voice, memory, tone, reminder
+   style, timezone) instead of local-only
+   stubs.
 ========================================= */
 
 "use strict";
 
+requireAuth();
 
 /* =========================================
    ELEMENTS
@@ -14,207 +18,129 @@ const profileName = document.getElementById("profileName");
 const displayName = document.getElementById("displayName");
 const displayEmail = document.getElementById("displayEmail");
 
-const editButtons = document.querySelectorAll(
-    ".field-edit"
-);
+const editButtons = document.querySelectorAll(".field-edit");
 
-const settingsButton = document.getElementById(
-    "profileSettingsButton"
-);
+const settingsButton = document.getElementById("profileSettingsButton");
+const signOutButton = document.getElementById("signOutButton");
 
-const voicePreference = document.getElementById(
-    "voicePreference"
-);
-
-const privacyPreference = document.getElementById(
-    "privacyPreference"
-);
-
-const appearancePreference = document.getElementById(
-    "appearancePreference"
-);
-
+const voiceToggle = document.getElementById("voiceToggle");
+const memoryToggle = document.getElementById("memoryToggle");
+const toneSelect = document.getElementById("toneSelect");
+const notifSelect = document.getElementById("notifSelect");
+const tzInput = document.getElementById("tzInput");
+const saveSettingsButton = document.getElementById("saveSettingsButton");
+const saveStatusText = document.getElementById("saveStatusText");
 
 /* =========================================
-   PROFILE DATA
+   LOCAL DISPLAY NAME
+   (cosmetic only — the backend has no "name"
+   field, so this stays local like before)
 ========================================= */
 
 const ProfileState = {
-    name: localStorage.getItem("josaProfileName") || "John",
-    email: localStorage.getItem("josaProfileEmail") || ""
+    name: localStorage.getItem("josaProfileName") || "John"
 };
 
-
-/* =========================================
-   DISPLAY PROFILE
-========================================= */
-
-function updateProfileDisplay() {
-
-    if (profileName) {
-        profileName.textContent = ProfileState.name;
-    }
-
-    if (displayName) {
-        displayName.textContent = ProfileState.name;
-    }
-
-    if (displayEmail) {
-        displayEmail.textContent =
-            ProfileState.email || "Not added";
-    }
-
+function updateNameDisplay() {
+    if (profileName) profileName.textContent = ProfileState.name;
+    if (displayName) displayName.textContent = ProfileState.name;
 }
 
+editButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        if (button.dataset.field !== "name") return;
 
-/* =========================================
-   EDIT PROFILE FIELDS
-========================================= */
+        const newName = window.prompt("Enter your display name:", ProfileState.name);
+        if (newName === null) return;
 
-function editProfileField(field) {
-
-    if (field === "name") {
-
-        const newName = window.prompt(
-            "Enter your display name:",
-            ProfileState.name
-        );
-
-        if (newName === null) {
-            return;
-        }
-
-        const cleanedName = newName.trim();
-
-        if (!cleanedName) {
+        const cleaned = newName.trim();
+        if (!cleaned) {
             window.alert("Please enter a valid name.");
             return;
         }
 
-        ProfileState.name = cleanedName;
-
-        localStorage.setItem(
-            "josaProfileName",
-            cleanedName
-        );
-
-        updateProfileDisplay();
-
-    }
-
-
-    if (field === "email") {
-
-        const newEmail = window.prompt(
-            "Enter your email address:",
-            ProfileState.email
-        );
-
-        if (newEmail === null) {
-            return;
-        }
-
-        const cleanedEmail = newEmail.trim();
-
-        if (
-            cleanedEmail &&
-            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanedEmail)
-        ) {
-            window.alert("Please enter a valid email.");
-            return;
-        }
-
-        ProfileState.email = cleanedEmail;
-
-        localStorage.setItem(
-            "josaProfileEmail",
-            cleanedEmail
-        );
-
-        updateProfileDisplay();
-
-    }
-
-}
-
-
-/* =========================================
-   EDIT BUTTON EVENTS
-========================================= */
-
-editButtons.forEach((button) => {
-
-    button.addEventListener("click", () => {
-
-        const field = button.dataset.field;
-
-        editProfileField(field);
-
+        ProfileState.name = cleaned;
+        localStorage.setItem("josaProfileName", cleaned);
+        updateNameDisplay();
     });
-
 });
-
-
-/* =========================================
-   SETTINGS BUTTON
-========================================= */
 
 settingsButton?.addEventListener("click", () => {
-
-    window.alert(
-        "Profile settings will be expanded in a future update."
-    );
-
+    window.alert("Change preferences below, then tap \"Save changes.\"");
 });
-
 
 /* =========================================
-   VOICE PREFERENCE
+   REAL SETTINGS — LOAD
 ========================================= */
 
-voicePreference?.addEventListener("click", () => {
+async function loadProfile() {
+    const session = await getSession();
+    if (!session) return; // requireAuth() already redirects
 
-    window.location.href = "live.html";
+    if (displayEmail) {
+        displayEmail.textContent = session.user.email || "Not available";
+    }
 
-});
+    try {
+        const userId = await getUserId();
+        const data = await callBackend(`/settings/${userId}`);
+        const s = data.settings;
 
+        if (voiceToggle) voiceToggle.checked = !!s.voice_enabled;
+        if (memoryToggle) memoryToggle.checked = !!s.memory_enabled;
+        if (toneSelect) toneSelect.value = s.assistant_tone || "casual";
+        if (notifSelect) notifSelect.value = s.notification_style || "both";
+        if (tzInput) tzInput.value = s.timezone || "";
+    } catch (error) {
+        console.error("Failed to load settings:", error);
+        saveStatusText.textContent = "Couldn't load your settings.";
+    }
+}
 
 /* =========================================
-   PRIVACY PREFERENCE
+   REAL SETTINGS — SAVE
 ========================================= */
 
-privacyPreference?.addEventListener("click", () => {
+saveSettingsButton?.addEventListener("click", async () => {
+    saveStatusText.textContent = "Saving...";
 
-    window.alert(
-        "Privacy settings will be available soon."
-    );
+    try {
+        const userId = await getUserId();
 
+        await callBackend(`/settings/${userId}`, {
+            method: "PUT",
+            body: JSON.stringify({
+                voiceEnabled: voiceToggle.checked,
+                memoryEnabled: memoryToggle.checked,
+                assistantTone: toneSelect.value,
+                notificationStyle: notifSelect.value,
+                timezone: tzInput.value.trim(),
+            }),
+        });
+
+        saveStatusText.textContent = "Saved.";
+        setTimeout(() => { saveStatusText.textContent = ""; }, 2000);
+    } catch (error) {
+        console.error("Failed to save settings:", error);
+        saveStatusText.textContent = "Couldn't save. Please try again.";
+    }
 });
-
 
 /* =========================================
-   APPEARANCE PREFERENCE
+   SIGN OUT
 ========================================= */
 
-appearancePreference?.addEventListener("click", () => {
-
-    window.alert(
-        "JOSA currently uses the premium dark theme."
-    );
-
+signOutButton?.addEventListener("click", async () => {
+    await signOut();
 });
-
 
 /* =========================================
    INITIALIZE
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
+    updateNameDisplay();
+    loadProfile();
 
-    updateProfileDisplay();
-
-    console.log(
-        "JOSA AI Profile initialized."
-    );
-
+    console.log("JOSA AI Profile initialized.");
 });

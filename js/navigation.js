@@ -10,7 +10,7 @@
 ========================================= */
 
 const navigationItems = document.querySelectorAll(
-    ".nav-item"
+    ".nav-link, .live-button"
 );
 
 
